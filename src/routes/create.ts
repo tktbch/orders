@@ -1,9 +1,10 @@
 import express, {Request, Response} from 'express';
 import {Order} from "../models/order";
-import {NotFoundError, OrderStatus, requireAuth, validateRequest} from "@tktbitch/common";
+import {BadRequestError, NotFoundError, OrderStatus, requireAuth, validateRequest} from "@tktbitch/common";
 import {body} from "express-validator";
-import {BadRequestError} from "../../../common/build/errors";
 import {Ticket} from "../models/ticket";
+import {natsWrapper} from "../nats-wrapper";
+import {OrderCreatedPublisher} from "../events/publishers/order-created-publisher";
 
 const router = express.Router();
 const EXPIRATION_WINDOW_SECONDS = 15 * 60;
@@ -37,7 +38,16 @@ router.post('/api/orders', requireAuth, [
     })
     await order.save();
     // publish order:created event
-
+    await new OrderCreatedPublisher(natsWrapper.client).publish({
+        id: order.id,
+        userId: order.userId,
+        expiresAt: order.expiresAt.toDateString(),
+        status: order.status,
+        ticket: {
+            id: order.ticket.id,
+            price: order.ticket.price
+        }
+    })
     res.sendStatus(201).send(order)
 })
 

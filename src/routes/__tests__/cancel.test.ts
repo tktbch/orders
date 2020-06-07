@@ -3,6 +3,7 @@ import {app} from '../../app';
 import {getCookie, OrderStatus} from "@tktbitch/common";
 import {createOrder, getMongoId} from "../../test/order-helper";
 import {Order} from "../../models/order";
+import {natsWrapper} from "../../nats-wrapper";
 
 describe('PUT /api/orders/:id', () => {
 
@@ -46,6 +47,20 @@ describe('PUT /api/orders/:id', () => {
             .expect(200)
         const updatedOrder = await Order.findById(order.id)
         expect(updatedOrder!.status).toEqual(OrderStatus.Cancelled);
+    })
+
+    it('should publish an order:cancelled event when successfully cancelled', async () => {
+        const user = getMongoId();
+        const cookie = getCookie({id: user, email: 'user@test.com'});
+        const order = await createOrder(OrderStatus.Created, user)
+        await request(app)
+            .put(`/api/orders/${order.id}`)
+            .set('Cookie', cookie)
+            .send()
+            .expect(200)
+        const updatedOrder = await Order.findById(order.id)
+        expect(updatedOrder!.status).toEqual(OrderStatus.Cancelled);
+        expect(natsWrapper.client.publish).toHaveBeenCalled()
     })
 
 })

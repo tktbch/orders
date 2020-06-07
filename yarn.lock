@@ -472,9 +472,9 @@
     "@sinonjs/commons" "^1.7.0"
 
 "@tktbitch/common@^1.0.2":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@tktbitch/common/-/common-1.0.7.tgz#5cd199586f0ae64d398b94ac701eb6cc04bef212"
-  integrity sha512-RDGSM9Qg0MfCmA8DHAWpk3JydJ8hEKyvVJDdrk6NXdEv/Hkydm+C3nrn+vhU2Fx6SNS8aE+GasKnkPvkjk4tZA==
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@tktbitch/common/-/common-1.0.8.tgz#2024a433204abac064b1d3ee6b81b7b6cbe2579d"
+  integrity sha512-X2cNvnij31GJ/vTppoH/4kHaEFXziqFFyfr3Eg9WGj3hc1H5DiWSGIqcpG9SWwClJCApTYCzdgtLAmPGey6q0g==
   dependencies:
     "@types/cookie-session" "^2.0.40"
     "@types/express" "^4.17.6"

@@ -2,6 +2,7 @@ import request from 'supertest';
 import {app} from '../../app';
 import {getCookie, OrderStatus} from "@tktbitch/common";
 import {createOrder, createTicket, getMongoId} from "../../test/order-helper";
+import {natsWrapper} from "../../nats-wrapper";
 
 describe('POST /api/orders', () => {
 
@@ -49,6 +50,20 @@ describe('POST /api/orders', () => {
                 ticketId: ticket.id
             })
             .expect(201)
+    })
+
+
+    it('should publish an order:created event when it successfully reserves a ticket', async () => {
+        const ticket = await createTicket();
+
+        await request(app)
+            .post('/api/orders')
+            .set('Cookie', getCookie())
+            .send({
+                ticketId: ticket.id
+            })
+            .expect(201)
+        expect(natsWrapper.client.publish).toHaveBeenCalled()
     })
 
 })
