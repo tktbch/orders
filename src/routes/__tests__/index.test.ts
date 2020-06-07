@@ -33,12 +33,12 @@ describe('GET /api/orders', () => {
         const cookie = getCookie({id: userOne, email: 'userone@test.com'});
         await createOrder(OrderStatus.Completed, userOne);
         await createOrder(OrderStatus.Completed, userTwo);
-        const resp = await request(app)
+        const {body: orders} = await request(app)
             .get('/api/orders')
             .set('Cookie', cookie)
             .send()
             .expect(200)
-        expect(resp.body.length).toEqual(1)
+        expect(orders.length).toEqual(1)
     })
 
 })

@@ -4,12 +4,12 @@ import {getCookie, OrderStatus} from "@tktbitch/common";
 import {createOrder, getMongoId} from "../../test/order-helper";
 import {Order} from "../../models/order";
 
-describe('DELETE /api/orders/:id', () => {
+describe('PUT /api/orders/:id', () => {
 
     it('should require the user to be authenticated', async () => {
         const orderId = getMongoId();
         const resp = await request(app)
-            .delete(`/api/orders/${orderId}`)
+            .put(`/api/orders/${orderId}`)
             .send()
             .expect(401)
     })
@@ -20,7 +20,7 @@ describe('DELETE /api/orders/:id', () => {
         const cookie = getCookie({id: userOne, email: 'userone@test.com'});
         const order = await createOrder(OrderStatus.Created, userTwo)
         const resp = await request(app)
-            .delete(`/api/orders/${order.id}`)
+            .put(`/api/orders/${order.id}`)
             .set('Cookie', cookie)
             .send()
             .expect(401)
@@ -29,23 +29,23 @@ describe('DELETE /api/orders/:id', () => {
     it('should return a 404 if the order isn\'t found', async () => {
         const orderId = getMongoId();
         const resp = await request(app)
-            .delete(`/api/orders/${orderId}`)
+            .put(`/api/orders/${orderId}`)
             .set('Cookie', getCookie())
             .send()
             .expect(404)
     })
 
-    it('should return a 204 if the order is successfully deleted', async () => {
+    it('should return a 200 if the order is successfully cancelled', async () => {
         const user = getMongoId();
         const cookie = getCookie({id: user, email: 'user@test.com'});
         const order = await createOrder(OrderStatus.Created, user)
         await request(app)
-            .delete(`/api/orders/${order.id}`)
+            .put(`/api/orders/${order.id}`)
             .set('Cookie', cookie)
             .send()
-            .expect(204)
-        const orders = await Order.find({})
-        expect(orders.length).toEqual(0);
+            .expect(200)
+        const updatedOrder = await Order.findById(order.id)
+        expect(updatedOrder!.status).toEqual(OrderStatus.Cancelled);
     })
 
 })

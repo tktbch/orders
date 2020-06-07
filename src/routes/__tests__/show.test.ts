@@ -47,4 +47,17 @@ describe('GET /api/orders/:id', () => {
         expect(resp.body.id).toEqual(order.id)
     })
 
+    it('should populate the ticket associated with the order', async () => {
+        const user = getMongoId();
+        const cookie = getCookie({id: user, email: 'user@test.com'});
+        const order = await createOrder(OrderStatus.Created, user)
+        const {body: fetchedOrder} = await request(app)
+            .get(`/api/orders/${order.id}`)
+            .set('Cookie', cookie)
+            .send()
+            .expect(200)
+        expect(fetchedOrder.id).toEqual(order.id)
+        expect(fetchedOrder.ticket.id).toBeDefined();
+    })
+
 })

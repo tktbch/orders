@@ -38,7 +38,7 @@ router.post('/api/orders', requireAuth, [
     await order.save();
     // publish order:created event
 
-    res.status(201).send(order)
+    res.sendStatus(201).send(order)
 })
 
 export {router as createOrderRouter}

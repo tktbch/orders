@@ -1,10 +1,10 @@
 import express, {Request, Response} from 'express';
-import {Order} from "../models/order";
+import {Order, OrderStatus} from "../models/order";
 import {NotAuthorizedError, NotFoundError, requireAuth} from "@tktbitch/common";
 
 const router = express.Router();
 
-router.delete('/api/orders/:orderId', requireAuth, async (req:Request, res: Response) => {
+router.put('/api/orders/:orderId', requireAuth, async (req:Request, res: Response) => {
     const order = await Order.findById(req.params.orderId);
     if (!order) {
         throw new NotFoundError();
@@ -12,8 +12,9 @@ router.delete('/api/orders/:orderId', requireAuth, async (req:Request, res: Resp
     if (order.userId !== req.currentUser!.id) {
         throw new NotAuthorizedError('Unauthorized');
     }
-    await Order.deleteOne(order);
-    res.send(204)
+    order.status = OrderStatus.Cancelled;
+    await order.save();
+    res.send(order);
 })
 
-export {router as deleteOrderRouter}
+export {router as cancelOrderRouter}
