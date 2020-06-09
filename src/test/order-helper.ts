@@ -8,7 +8,8 @@ export const getMongoId = () => {
 };
 
 export const createTicket = async (title = 'test', price = 10) => {
-    const ticket = Ticket.build({ title, price});
+    const id = getMongoId()
+    const ticket = Ticket.build({ id, title, price });
     return await ticket.save();
 };
 

@@ -1,13 +1,21 @@
 import {Message} from "node-nats-streaming";
-import {AbstractListener, Subjects, TicketCreatedEvent} from "@tktbitch/common";
+import {AbstractListener, NotFoundError, Subjects, TicketUpdatedEvent} from "@tktbitch/common";
+import {queueGroupName} from "./queue-group-name";
+import {Ticket} from "../../models/ticket";
 
-export class TicketCreatedListener extends AbstractListener<TicketCreatedEvent> {
+export class TicketUpdatedListener extends AbstractListener<TicketUpdatedEvent> {
 
-    readonly subject = Subjects.TicketCreated;
-    queueGroupName = 'payments-service';
+    readonly subject = Subjects.TicketUpdated;
+    queueGroupName = queueGroupName;
 
-    onMessage(data: TicketCreatedEvent['data'], msg: Message) {
-        console.log('Event data!', data);
+    async onMessage(data: TicketUpdatedEvent['data'], msg: Message) {
+        const {title, price} = data;
+        const ticket = await Ticket.findByEvent(data);
+        if (!ticket) {
+            throw new Error('order:ticket:version:mismatch');
+        }
+        ticket.set({ title, price });
+        await ticket.save();
 
         msg.ack();
     }
