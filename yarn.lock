@@ -472,9 +472,9 @@
     "@sinonjs/commons" "^1.7.0"
 
 "@tktbitch/common@^1.0.2":
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/@tktbitch/common/-/common-1.0.10.tgz#99f666efb61ff115c63d7dcac02a89e508067460"
-  integrity sha512-PlENvgvcJTmWSbTs7dWMjVE6F8QC7q7q4gsUOoCE8Aqios20EzfFyWAvY65xLCdKNPGx8CNwyu4EIcAHKqEkLg==
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@tktbitch/common/-/common-1.0.11.tgz#eabe317bd3fd4c5e01fe7a4b2483fec9762fd06a"
+  integrity sha512-grys/PcaDmmAEMbMXuEFuLynyhWEg+cA8gQilcbfucwq3RPE2SToa23eS6rmUY06T4EFJoPwrFGbDGDDjZSHAg==
   dependencies:
     "@types/cookie-session" "^2.0.40"
     "@types/express" "^4.17.6"
@@ -700,9 +700,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "14.0.12"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.12.tgz#9c1d8ffb8084e8936603a6122a7649e40e68e04b"
-  integrity sha512-/sjzehvjkkpvLpYtN6/2dv5kg41otMGuHQUt9T2aiAuIfleCQRQHXXzF1eAw/qkZTj5Kcf4JSTf7EIizHocy6Q==
+  version "14.0.13"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.13.tgz#ee1128e881b874c371374c1f72201893616417c9"
+  integrity sha512-rouEWBImiRaSJsVA+ITTFM6ZxibuAlTuNOCyxVbwreu6k6+ujs7DfnU9o+PShFhET78pMBl3eH+AGSI5eOTkPA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"

@@ -49,7 +49,7 @@ router.post('/api/orders', requireAuth, [
             price: order.ticket.price
         }
     })
-    res.sendStatus(201).send(order)
+    res.status(201).send(order)
 })
 
 export {router as createOrderRouter}
