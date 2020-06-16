@@ -1,5 +1,5 @@
 import {natsWrapper} from "../../../nats-wrapper";
-import {TicketUpdatedEvent} from "@tktbitch/common";
+import {TicketUpdatedEvent} from "@tktbch/common";
 import {getMongoId} from "../../../test/order-helper";
 import {Message} from "node-nats-streaming";
 import {Ticket} from "../../../models/ticket";

@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 import {Order, OrderStatus} from "../models/order";
-import {NotAuthorizedError, NotFoundError, requireAuth} from "@tktbitch/common";
+import {NotAuthorizedError, NotFoundError, requireAuth} from "@tktbch/common";
 import {natsWrapper} from "../nats-wrapper";
 import {OrderCancelledPublisher} from "../events/publishers/order-cancelled-publisher";
 

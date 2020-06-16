@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express';
 import {Order} from "../models/order";
-import {NotAuthorizedError, NotFoundError, requireAuth} from "@tktbitch/common";
+import {NotAuthorizedError, NotFoundError, requireAuth} from "@tktbch/common";
 
 const router = express.Router();
 

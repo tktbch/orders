@@ -1,5 +1,5 @@
 import {Message} from "node-nats-streaming";
-import {AbstractListener, NotFoundError, Subjects, TicketUpdatedEvent} from "@tktbitch/common";
+import {AbstractListener, NotFoundError, Subjects, TicketUpdatedEvent} from "@tktbch/common";
 import {queueGroupName} from "./queue-group-name";
 import {Ticket} from "../../models/ticket";
 

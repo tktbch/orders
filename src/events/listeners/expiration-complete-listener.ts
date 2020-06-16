@@ -1,4 +1,4 @@
-import {AbstractListener, ExpirationCompleteEvent, OrderStatus, Subjects} from "@tktbitch/common";
+import {AbstractListener, ExpirationCompleteEvent, OrderStatus, Subjects} from "@tktbch/common";
 import {queueGroupName} from "./queue-group-name";
 import {Message} from "node-nats-streaming";
 import {Order} from "../../models/order";

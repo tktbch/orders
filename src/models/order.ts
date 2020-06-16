@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import {OrderStatus} from "@tktbitch/common";
+import {OrderStatus} from "@tktbch/common";
 import {TicketDoc} from './ticket';
 import {updateIfCurrentPlugin} from "mongoose-update-if-current";
-export {OrderStatus} from '@tktbitch/common';
+export {OrderStatus} from '@tktbch/common';
 
 interface OrderAttrs {
     ticket: TicketDoc,

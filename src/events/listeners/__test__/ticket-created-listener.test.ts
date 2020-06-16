@@ -1,6 +1,6 @@
 import {TicketCreatedListener} from "../ticket-created-listener";
 import {natsWrapper} from "../../../nats-wrapper";
-import {TicketCreatedEvent} from "@tktbitch/common";
+import {TicketCreatedEvent} from "@tktbch/common";
 import {getMongoId} from "../../../test/order-helper";
 import {Message} from "node-nats-streaming";
 import {Ticket} from "../../../models/ticket";

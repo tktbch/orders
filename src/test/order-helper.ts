@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import {Ticket} from "../models/ticket";
 import {Order} from "../models/order";
-import {OrderStatus} from "@tktbitch/common";
+import {OrderStatus} from "@tktbch/common";
 
 export const getMongoId = () => {
     return new mongoose.Types.ObjectId().toHexString();

@@ -1,6 +1,6 @@
 import request from 'supertest';
 import {app} from '../../app';
-import {getCookie, OrderStatus} from "@tktbitch/common";
+import {getCookie, OrderStatus} from "@tktbch/common";
 import {createOrder, createTicket, getMongoId} from "../../test/order-helper";
 import {natsWrapper} from "../../nats-wrapper";
 

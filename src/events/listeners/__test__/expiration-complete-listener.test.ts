@@ -3,7 +3,7 @@ import {natsWrapper} from "../../../nats-wrapper";
 import {Ticket} from "../../../models/ticket";
 import {getMongoId} from "../../../test/order-helper";
 import {Order} from "../../../models/order";
-import {ExpirationCompleteEvent, OrderStatus, Subjects} from "@tktbitch/common";
+import {ExpirationCompleteEvent, OrderStatus, Subjects} from "@tktbch/common";
 import {Message} from "node-nats-streaming";
 
 const setup = async () => {
